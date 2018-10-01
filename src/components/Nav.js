@@ -15,6 +15,12 @@ export default class Nav extends Component {
           <li>
             <NavLink to='leader' exact activeClassName='active'>Leader Board</NavLink>
           </li>
+          <li>
+            <img />
+          </li>
+          <li>
+            <NavLink to='signin' exact activeClassName='active'>Logout</NavLink>
+          </li>
         </ul>
       </nav>
     )
