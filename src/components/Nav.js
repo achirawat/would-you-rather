@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
 
-export default class Nav extends Component {
+class Nav extends Component {
+  signOut = () => {
+    const { dispatch } = this.props
+
+    dispatch(setAuthedUser(null))
+  }
   render() {
     return (
       <nav className='nav'>
@@ -16,13 +23,27 @@ export default class Nav extends Component {
             <NavLink to='leader' exact activeClassName='active'>Leader Board</NavLink>
           </li>
           <li>
-            <img />
-          </li>
-          <li>
-            <NavLink to='signin' exact activeClassName='active'>Logout</NavLink>
+            <NavLink to='signin' exact activeClassName='active'>
+              {this.props.authedUser === null ?
+                <span>Sign In</span> :
+                <div>
+                  <img src={} alt="Avatar"/>
+                  <span className="sign-out" onClick={}>Sign Out</span>
+                </div>
+              }
+            </NavLink>
           </li>
         </ul>
       </nav>
     )
   }
 }
+
+function mapStateToProps({ authedUser, users }) {
+  return {
+    authedUser,
+    users
+  }
+}
+
+export default connect(mapStateToProps)(Nav)
