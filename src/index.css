@@ -13,9 +13,18 @@ body {
   font-weight: bold;
 }
 
+.panel {
+  width: 500px;
+  text-align: center;
+  
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
 .nav {
   width: 100%;
-
   text-align: center;
 }
 
@@ -25,6 +34,7 @@ body {
 
 .nav li {
   margin: auto 10px auto 10px;
+  font-size: 18px;
 }
 
 ul {

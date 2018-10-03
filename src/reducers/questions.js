@@ -9,9 +9,22 @@ export default function questions (state = {}, action) {
         ...action.questions
       }
     case SAVE_ANSWER :
-      return {}
+      const question = {...state[action.qid]};
+      return {
+        ...state,
+        [action.qid]: {
+          ...question,
+          [action.answer]: {
+            ...question[action.answer],
+            votes: question[action.answer].votes.concat([action.authedUser])
+          }
+        }
+      }
     case ADD_QUESTION :
-      return {}
+      return {
+        ...state,
+        [action.question.id]: action.question
+      }
     default : 
       return state
   }
