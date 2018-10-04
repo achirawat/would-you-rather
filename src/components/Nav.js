@@ -27,7 +27,7 @@ class Nav extends Component {
               {this.props.authedUser === null ?
                 <span>Sign In</span> :
                 <div>
-                  <img src={this.props.users[this.props.authedUser].avatarURL} alt="Avatar" style={{ height: "30px", width: "30px", borderRadius: "50%" }}/>
+                  <img src={this.props.users[this.props.authedUser].avatarURL} alt="Avatar" className='avatar'/>
                   <span className="sign-out" onClick={this.signOut}>Sign Out</span>
                 </div>
               }

@@ -8,6 +8,9 @@ class SignIn extends Component {
     selectedUser: '',
     toHome: false
   }
+  onInputChange = (selectedUser) => {
+    this.setState({ selectedUser })
+  }
   onSubmit = (e) => {
     e.preventDefault()
 
@@ -18,25 +21,33 @@ class SignIn extends Component {
 
     this.setState({toHome: true})
   }
-
+  isButtonDisabled = () => {
+    if(this.state.selectedUser === 'move'){
+      return true
+    }
+    return false
+  }
   render() {
     const { toHome } = this.state
     if (toHome === true) {
       return <Redirect to='/' />
     }
     return (
-        <div className="center">
-          <h3>Welcome to the Would You Rather App!</h3>
-          <p>Please sign in to continue</p>
-          <form onSubmit={this.onSubmit}>
-              <select>
-                {this.props.userIDs.map((id) => (
-                  <option key={id} value={this.props.users[id].id}>{this.props.users[id].name}</option>
-                ))}
-              </select>
-              <br />
-              <button type="submit">Sign In</button>
-          </form>
+        <div className="sign-in">
+            <h3>Welcome to the Would You Rather App!</h3>
+            <p>Please sign in to continue</p>
+            <form onSubmit={this.onSubmit}>
+                <img src="images.jpg" alt="react"/>
+                <br/>
+                <select value={this.state.selectedUser} onChange={(event) => this.onInputChange(event.target.value)}>
+                <option value='' disabled>Select User</option>
+                  {this.props.userIDs.map((id) => (
+                    <option key={id} value={this.props.users[id].id}>{this.props.users[id].name}</option>
+                  ))}
+                </select>
+                <br />
+                <button type="submit">Sign In</button>
+            </form>
         </div>
     )
   }
