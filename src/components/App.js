@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Nav from './Nav'
-import Dashboard from '../components/Dashboard'
-import SignIn from '../components/SignIn'
+import Dashboard from './Dashboard'
+import SignIn from './SignIn'
+import NewQuestion from './NewQuestion'
 
 class App extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Switch>
             <Route path='/' exact component={Dashboard} />
             <Route path='/SignIn' component={SignIn} />
+            <Route path='/new' component={NewQuestion} />
           </Switch>
         </div>
       </Router>

@@ -9,6 +9,10 @@ body {
   text-align: center;
 }
 
+.newquestion {
+  text-align: center;
+}
+
 .active {
   font-weight: bold;
 }
