@@ -14,9 +14,19 @@ class Dashboard extends Component {
     return (
       <div>
         <ul>
-          <li>
-            <QuestionLists />
-          </li>
+          {this.props.questionIDs.map((id) => (
+            this.state.answered === true ?
+              this.props.users[this.props.authedUser].answers[id] !== undefined && (
+                <li key={id}>
+                  <QuestionLists id={id}/>
+                </li>
+              ) :
+              this.props.users[this.props.authedUser].answers[id] === undefined && (
+                <li key={id}>
+                  <QuestionLists id={id}/>
+                </li>
+              )
+          ))}      
         </ul>
       </div>
     )
@@ -25,9 +35,10 @@ class Dashboard extends Component {
 
 function mapStateToProps({questions, users, authedUser}) {
   return {
+    questionIDs: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp),
     users,
-    questions,
-    authedUser
+    authedUser,
+    questions
   }
 }
 
