@@ -9,6 +9,10 @@ body {
   text-align: center;
 }
 
+.question {
+  text-align: center;
+  margin: auto;
+}
 .newquestion {
   text-align: center;
 }

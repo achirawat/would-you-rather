@@ -23,18 +23,29 @@ class QuestionLists extends Component {
   render() {
 
     return (
-      <div className="center">
-        <h3>{this.props.users[this.props.question.author].name} ask:</h3>
-        <img src={this.props.users[this.props.question.author].avatarURL} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
-        <p>Would You Rather ...</p>
-        <form onSubmit={this.onSubmit}>
-          <div className="radio">
-            <input type="radio" value="optionOne" onChange={this.answerChange}/>
-          </div>
-          <div className="radio">
-            <input type="radio" value="optionTwo" onChange={this.answerChange}/>
-          </div>
-        </form>
+      <div className="col-lg-12">
+        <div className="col-lg-4"></div>
+        <div className="question panel panel-primary col-lg-5">
+          {this.props.authedUser === null ?
+            <div>Please Wait ..... </div> :
+            this.answered() !== true
+          }
+          <h3>{this.props.users[this.props.question.author].name} ask:</h3>
+          <img src={this.props.users[this.props.question.author].avatarURL} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
+          <p>Would You Rather ...</p>
+          <form onSubmit={this.onSubmit}>
+            <div >
+              <input type="radio" value="optionOne" onChange={this.answerChange} checked={this.state.selectedAnswer === 'optionOne'}/>
+              {this.props.question.optionOne.text}
+            </div>
+            <div >
+              <input type="radio" value="optionTwo" onChange={this.answerChange} checked={this.state.selectedAnswer === 'optionTwo'}/>
+              {this.props.question.optionTwo.text}
+            </div>
+            <button type="submit" >Submit</button>
+          </form>
+        </div>
+        <div className="col-lg-3"></div>
       </div>
     )
   }
