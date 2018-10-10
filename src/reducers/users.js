@@ -8,18 +8,6 @@ export default function users (state = {}, action) {
         ...state,
         ...action.users
       }
-    case SAVE_ANSWER :
-    const user = state[action.authedUser]
-      return {
-        ...state,
-        [action.authedUser]: {
-          ...user,
-          answers: {
-            ...user.answers,
-            [action.id]: action.answer
-          }
-        }
-      }
     default :
       return state
   }

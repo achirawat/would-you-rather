@@ -6,6 +6,7 @@ import Nav from './Nav'
 import Dashboard from './Dashboard'
 import SignIn from './SignIn'
 import NewQuestion from './NewQuestion'
+import Poll from './Poll';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path='/' exact component={Dashboard} />
             <Route path='/SignIn' component={SignIn} />
             <Route path='/new' component={NewQuestion} />
+            <Route path='/questions/:question_id' component={Poll} />
           </Switch>
         </div>
       </Router>
