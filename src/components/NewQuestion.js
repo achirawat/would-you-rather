@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleAddQuestion } from '../actions/questions';
-// import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
   state = {
@@ -11,10 +10,10 @@ class NewQuestion extends Component {
     toHome: false
   }
   optionOneChange = (e) => {
-    this.setState(() => ({ optionOne: e.target.value }))
+    this.setState({ optionOne: e.target.value })
   }
   optionTwoChange = (e) => {
-    this.setState(() => ({ optionTwo: e.target.value }))
+    this.setState({ optionTwo: e.target.value })
   }
   onSubmit = (e) => {
     e.preventDefault()
@@ -55,10 +54,10 @@ class NewQuestion extends Component {
         <h1>Create New Question</h1>
         <p>Complete the question:</p>
         <h3>Would you rather ...</h3>
-        <form submit={this.onSubmit}>
-          <input type="text" placeholder="option1" value={optionOne} onChange={this.optionOneChange} />
+        <form onSubmit={this.onSubmit}>
+          <input type="text" placeholder="option1" value={optionOne} onChange={this.optionOneChange}></input>
           <h3>OR</h3>
-          <input type="text" placeholder="option2" value={optionTwo} onChange={this.optionTwoChange} />
+          <input type="text" placeholder="option2" value={optionTwo} onChange={this.optionTwoChange}></input>
           <br />
           <br />
           <button type="submit" disabled={this.onDisabled()}>Submit</button>

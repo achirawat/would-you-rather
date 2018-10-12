@@ -12,11 +12,13 @@ export function receiveQuestions (questions) {
   }
 }
 
-function saveAnswer (authedUser, id, answer) {
+function saveAnswer (authedUser, qid, answer) {
+  console.log(authedUser, "|||", qid, "|||", answer);
+  
   return {
     type: SAVE_ANSWER,
     authedUser,
-    id,
+    qid,
     answer
   }
 }
