@@ -103,22 +103,12 @@ class Poll extends Component {
 function mapStateToProps({authedUser, users, questions}, props) {
   const { question_id } = props.match.params
   const question = questions[question_id]
-  // const questionIDs = Object.keys(questions)
-  // let isIdValid = false
-
-  // questionIDs.map((questionID) => (
-  //   questionID === question_id && (
-  //     isIdValid = true
-  //   )
-  // ))
 
   return {
     question_id,
     question,
     authedUser,
     users,
-    // questionIDs,
-    // isIdValid
   }
 }
 
