@@ -12,9 +12,8 @@ export function receiveQuestions (questions) {
   }
 }
 
-function saveAnswer (authedUser, qid, answer) {
-  console.log(authedUser, "|||", qid, "|||", answer);
-  
+function saveAnswer (info) {
+  const { authedUser, qid, answer } = info;
   return {
     type: SAVE_ANSWER,
     authedUser,
