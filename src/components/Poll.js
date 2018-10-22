@@ -27,10 +27,29 @@ class Poll extends Component {
   answerChange = (e) => {
     this.setState({ selectedAnswer: e.target.value })
   }
+  optineOneVoted() {
+    return this.props.question.optionOne.votes.length
+  }
+  setWidthOne() {
+    let total = this.props.question.optionOne.votes.length + this.props.question.optionTwo.votes.length
+    let percent = this.props.question.optionOne.votes.length / total
+    return (percent*100).toFixed(2)
+  }
+  optineTwoVoted() {
+    return this.props.question.optionTwo.votes.length
+  }
+  setWidthTwo() {
+    let total = this.props.question.optionOne.votes.length + this.props.question.optionTwo.votes.length
+    let percent = this.props.question.optionTwo.votes.length / total
+    return (percent*100).toFixed(2)
+  }
   render() {  
     if(this.props.authedUser === null){
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: `/questions/${this.props.question_id}`, id: this.props.question_id}}} />
     }
+    console.log(this.answered());
+    
+    
     return (
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
@@ -66,9 +85,15 @@ class Poll extends Component {
                   <div>
                     {this.state.selectedAnswer === 'optionOne' ? 
                       <div className="panel panel-primary">
-                        <div class="panel-heading">Your Voted</div>
-                        <div class="panel-body">
+                        <div className="panel-heading">Your Voted</div>
+                        <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionOne.text}?</h4>
+                          <div className="progress">
+                            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{ width: `${this.setWidthOne}` }}
+                            aria-valuemin="0" aria-valuemax="100" style={{ width: `${this.setWidthOne}%` }}>
+                              {this.setWidthOne()}%
+                            </div>
+                          </div>
                         </div>
                       </div>
                       :
@@ -80,9 +105,15 @@ class Poll extends Component {
                   <div>
                     {this.state.selectedAnswer === 'optionTwo' ? 
                       <div className="panel panel-primary">
-                        <div class="panel-heading">Your Voted</div>
-                        <div class="panel-body">
+                        <div className="panel-heading">Your Voted</div>
+                        <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionTwo.text}?</h4>
+                          <div className="progress">
+                            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{ width: `${this.setWidthTwo}`}}
+                            aria-valuemin="0" aria-valuemax="100" style={{ width: `${this.setWidthTwo}%` }}>
+                              {this.setWidthTwo()}%
+                            </div>
+                          </div>
                         </div>
                       </div>
                       :
@@ -95,7 +126,7 @@ class Poll extends Component {
           }
       </div>
       <div className="col-lg-3"></div>
-      </div>
+      </div>      
     )
   }
 }

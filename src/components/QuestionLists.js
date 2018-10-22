@@ -1,32 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { handleSaveAnswer } from '../actions/questions'
 
 class QuestionLists extends Component {
-  state = {
-    selectedAnswer: 'optionOne'
-  }
-  answered() {
-    if(this.props.users[this.props.authedUser].answers[this.props.question_id]){
-      return true
-    }
-    return false
-  }
-  onSubmit = (e) => {
-    e.preventDefault()
-
-    const { dispatch, question, authedUser } = this.props
-
-    dispatch(handleSaveAnswer({
-      authedUser,
-      id: question.id,
-      answer: this.state.selectedAnswer
-    }))
-  }
-  answerChange = (e) => {
-    this.setState({ selectedAnswer: e.target.value })
-  }
   render() {
 
     return (
