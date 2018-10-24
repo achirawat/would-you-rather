@@ -7,12 +7,26 @@ class Dashboard extends Component {
   state = {
     answered: false
   }
+  setAnswered = (bool) => {
+    this.setState({ answered: bool})
+  }
+
+  setClassName(bool) {
+    if (this.state.answered === bool) {
+      return "bold"
+    }
+    return "normal"
+  }
   render() {
     if (this.props.authedUser === null) {
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: '/'}}} />
     }
     return (
-      <div>
+      <div className="question">
+          <div className="type">
+            <h3 onClick={() => this.setAnswered(false)} className={this.setClassName(false)}>Unanswered Questions</h3>
+            <h3 onClick={() => this.setAnswered(true)} className={this.setClassName(true)}>Answered Questions</h3>
+          </div>
         <ul>
           {this.props.questionIDs.map((id) => (
             this.state.answered === true ?

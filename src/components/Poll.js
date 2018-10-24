@@ -48,13 +48,15 @@ class Poll extends Component {
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: `/questions/${this.props.question_id}`, id: this.props.question_id}}} />
     }
     console.log(this.answered());
+    console.log(this.props.users[this.props.authedUser].answers[this.props.question_id]);
+    
     
     
     return (
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
-      <div className="question panel panel-primary col-lg-5">
-        {this.props.authedUser === null ?
+        <div className="question panel panel-primary col-lg-5">
+          {this.props.authedUser === null ?
             <div>Loading...</div>  :
               this.answered() !== true ?
                 <div>
@@ -88,11 +90,8 @@ class Poll extends Component {
                         <div className="panel-heading">Your Voted</div>
                         <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionOne.text}?</h4>
-                          <div className="progress">
-                            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{ width: `${this.setWidthOne}` }}
-                            aria-valuemin="0" aria-valuemax="100" style={{ width: `${this.setWidthOne}%` }}>
-                              {this.setWidthOne()}%
-                            </div>
+                          <div className="progress-bar">
+                            <div className="filter" style={{ width: `${this.setWidthOne}%` }}>{this.setWidthOne()}%</div>
                           </div>
                         </div>
                       </div>
@@ -108,11 +107,8 @@ class Poll extends Component {
                         <div className="panel-heading">Your Voted</div>
                         <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionTwo.text}?</h4>
-                          <div className="progress">
-                            <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{ width: `${this.setWidthTwo}`}}
-                            aria-valuemin="0" aria-valuemax="100" style={{ width: `${this.setWidthTwo}%` }}>
-                              {this.setWidthTwo()}%
-                            </div>
+                          <div className="progress-bar">
+                            <div className="filter" style={{ width: `${this.setWidthTwo}%` }}>{this.setWidthTwo()}%</div>
                           </div>
                         </div>
                       </div>
@@ -123,9 +119,9 @@ class Poll extends Component {
                     }
                   </div>
                 </div>
-          }
-      </div>
-      <div className="col-lg-3"></div>
+            }
+        </div>
+        <div className="col-lg-3"></div>
       </div>      
     )
   }
