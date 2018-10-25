@@ -9,13 +9,15 @@ class QuestionLists extends Component {
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
         <div className="question panel panel-primary col-lg-5">
-          <h3>{this.props.users[this.props.question.author].name} ask:</h3>
-          <img src={this.props.users[this.props.question.author].avatarURL} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
-          <h3>Would You Rather ...</h3>
-          <h4>{this.props.question.optionOne.text} OR {this.props.question.optionTwo.text}</h4>
-          <Link to={`/questions/${this.props.id}`} id={this.props.id}>
-            <button type="submit" >Vote</button>
-          </Link>
+          <div className="box">
+            <h3>{this.props.users[this.props.question.author].name} ask:</h3>
+            <img src={this.props.users[this.props.question.author].avatarURL} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
+            <h3>Would You Rather ...</h3>
+            <h4>{this.props.question.optionOne.text} OR {this.props.question.optionTwo.text}</h4>
+            <Link to={`/questions/${this.props.id}`} id={this.props.id}>
+              <button type="submit" >View</button>
+            </Link>
+          </div>
         </div>
         <div className="col-lg-3"></div>
       </div>

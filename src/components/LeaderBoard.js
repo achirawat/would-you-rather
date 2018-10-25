@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Board from './Board'
 
 class LeaderBoard extends Component {
   render() {
-    if (props.authedUser === null) {
+    if (this.props.authedUser === null) {
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: '/LeaderBoard'}}} />
     }
     return (
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
-        <div className="question panel panel-primary col-lg-5">
-          <div>
-            <ul>
-              <li>
-                <div>
-                  <img src={`../${this.props.users[this.props.question.author].avatarURL}`} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
-                  <h3>{this.props.users[this.props.question.author].name}</h3>
-                  <div>
-                    <p>Answered questions: {}</p>
-                    <p>Created questions: {}</p>
-                    <p>Score: {}</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <div className="col-lg-5">
+          <ul>
+            {this.props.score.map((user) => (
+              <Board id={user.id} key={user.id}/>
+            ))}
+          </ul>
         </div>
         <div className="col-lg-3"></div>
       </div>
@@ -34,8 +25,22 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps ({ users, authedUser }) {
-  return {
+  let score = []
+  const userIDs = Object.keys(users)
 
+  userIDs.map((id) => (
+    score.push({
+      id: users[id].id,
+      total: users[id].questions.length + (Object.keys(users[id].answers).length)
+    })
+  ))
+
+  score.sort((b, a) => parseFloat(a.total) - parseFloat(b.total))
+
+  return {
+    userIDs,
+    score,
+    authedUser
   }
 }
 

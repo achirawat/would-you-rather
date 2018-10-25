@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #252525;
+  /* color: #252525; */
 }
 
 .sign-in {
@@ -11,7 +11,7 @@ body {
 
 .question {
   text-align: center;
-  margin: auto;
+  margin: 10px;
 }
 .newquestion {
   text-align: center;
@@ -24,7 +24,6 @@ body {
 .panel {
   width: 500px;
   text-align: center;
-  
 }
 
 .type {
@@ -111,5 +110,13 @@ hr {
   height: 100%;
   border-radius: inherit;
   transition: width .2s ease-in;
+}
+
+.box {
+  margin: 10px;
+}
+
+.total {
+  margin-top: 30px;
 }
 

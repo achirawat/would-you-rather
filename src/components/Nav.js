@@ -20,7 +20,7 @@ class Nav extends Component {
             <NavLink to='/new' activeClassName='active'>New Question</NavLink>
           </li>
           <li>
-            <NavLink to='/leader' activeClassName='active'>Leader Board</NavLink>
+            <NavLink to='/leaderboard' activeClassName='active'>Leader Board</NavLink>
           </li>
           <li>
             <NavLink to='/SignIn' activeClassName='active'>

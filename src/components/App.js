@@ -7,6 +7,7 @@ import Dashboard from './Dashboard'
 import SignIn from './SignIn'
 import NewQuestion from './NewQuestion'
 import Poll from './Poll';
+import LeaderBoard from './LeaderBoard';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path='/SignIn' component={SignIn} />
             <Route path='/new' component={NewQuestion} />
             <Route path='/questions/:question_id' component={Poll} />
+            <Route path='/leaderboard' component={LeaderBoard} />
           </Switch>
         </div>
       </Router>
