@@ -55,7 +55,7 @@ class Poll extends Component {
     return (
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
-        <div className="question panel panel-primary col-lg-5">
+        <div className="question panel col-lg-5">
           {this.props.authedUser === null ?
             <div>Loading...</div>  :
               this.answered() !== true ?
