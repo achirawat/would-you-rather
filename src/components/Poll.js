@@ -49,6 +49,8 @@ class Poll extends Component {
     }
     console.log(this.answered());
     console.log(this.props.users[this.props.authedUser].answers);
+    console.log(this.props.users[this.props.authedUser].answers[this.props.question.id]);
+    
     console.log(this.props.question.id);
     
 
