@@ -8,7 +8,7 @@ class Poll extends Component {
     selectedAnswer: 'optionOne',
   }
   answered() {
-    if(this.props.users[this.props.authedUser].answers[this.props.question_id]){
+    if(this.props.users[this.props.authedUser].answers[this.props.question.id]){
       return true
     }
     return false
@@ -48,8 +48,10 @@ class Poll extends Component {
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: `/questions/${this.props.question_id}`, id: this.props.question_id}}} />
     }
     console.log(this.answered());
-    console.log(this.props.users[this.props.authedUser].answers[this.props.question_id]);
+    console.log(this.props.users[this.props.authedUser].answers);
+    console.log(this.props.question.id);
     
+
     
     
     return (
