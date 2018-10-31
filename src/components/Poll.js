@@ -47,15 +47,7 @@ class Poll extends Component {
     if(this.props.authedUser === null){
       return <Redirect to={{pathname: '/SignIn', state: {redirectUrl: `/questions/${this.props.question_id}`, id: this.props.question_id}}} />
     }
-    console.log(this.answered());
-    console.log(this.props.users[this.props.authedUser].answers);
-    console.log(this.props.users[this.props.authedUser].answers[this.props.question.id]);
-    
-    console.log(this.props.question.id);
-    
 
-    
-    
     return (
       <div className="col-lg-12">
         <div className="col-lg-4"></div>
