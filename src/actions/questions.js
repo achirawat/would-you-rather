@@ -45,8 +45,8 @@ export function handleAddQuestion (question) {
     const { authedUser } = getState()
 
     return saveQuestion({
-      optionOnetext: question.optionOne,
-      optionTwotext: question.optionTwo,
+      optionOneText: question.optionOne,
+      optionTwoText: question.optionTwo,
       author: authedUser
     })
       .then((question) => dispatch(addQuestion(question)))
