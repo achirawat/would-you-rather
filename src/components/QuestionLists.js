@@ -15,7 +15,7 @@ class QuestionLists extends Component {
             <h3>Would You Rather ...</h3>
             <h4>{this.props.question.optionOne.text} OR {this.props.question.optionTwo.text}</h4>
             <Link to={`/questions/${this.props.id}`} id={this.props.id}>
-              <button type="submit" >View</button>
+              <button type="submit">View</button>
             </Link>
           </div>
         </div>

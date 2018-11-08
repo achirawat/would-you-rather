@@ -24,10 +24,16 @@ class Poll extends Component {
       answer: this.state.selectedAnswer
     }))
   }
+  voted(answer) {
+    if(answer === this.props.users[this.props.authedUser].answers[this.props.question_id]){
+      return "voted"
+    }
+    return ""
+  }
   answerChange = (e) => {
     this.setState({ selectedAnswer: e.target.value })
   }
-  optineOneVoted() {
+  optionOneVoted() {
     return this.props.question.optionOne.votes.length
   }
   setWidthOne() {
@@ -35,13 +41,16 @@ class Poll extends Component {
     let percent = this.props.question.optionOne.votes.length / total
     return (percent*100).toFixed(2)
   }
-  optineTwoVoted() {
+  optionTwoVoted() {
     return this.props.question.optionTwo.votes.length
   }
   setWidthTwo() {
     let total = this.props.question.optionOne.votes.length + this.props.question.optionTwo.votes.length
     let percent = this.props.question.optionTwo.votes.length / total
     return (percent*100).toFixed(2)
+  }
+  totalVoted() {
+    return this.props.question.optionOne.votes.length + this.props.question.optionTwo.votes.length
   }
   render() {  
     if(this.props.authedUser === null){
@@ -81,38 +90,32 @@ class Poll extends Component {
                   <img src={`../${this.props.users[this.props.question.author].avatarURL}`} alt="Avatar" style={{ height: "100px", width: "100px", borderRadius: "50%" }}/>
                   <h2>Results</h2>
                   <div>
-                    {this.state.selectedAnswer === 'optionOne' ? 
                       <div className="panel panel-primary">
-                        <div className="panel-heading">Your Voted</div>
+                        {this.voted("optionOne") === "voted" && (
+                          <div className="panel-heading">Your Voted</div>
+                        )}
                         <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionOne.text}?</h4>
                           <div className="progress-bar">
                             <div className="filter" style={{ width: `${this.setWidthOne}%` }}>{this.setWidthOne()}%</div>
                           </div>
                         </div>
+                        <p>{this.optionOneVoted()} out of {this.totalVoted()}</p>
                       </div>
-                      :
-                      <div className="panel panel-primary">
-                        <h4>Would you rather {this.props.question.optionOne.text}?</h4>
-                      </div>
-                    }
                   </div>
                   <div>
-                    {this.state.selectedAnswer === 'optionTwo' ? 
                       <div className="panel panel-primary">
-                        <div className="panel-heading">Your Voted</div>
+                        {this.voted("optionTwo") === "voted" && (
+                          <div className="panel-heading">Your Voted</div>
+                        )}
                         <div className="panel-body">
                           <h4>Would you rather {this.props.question.optionTwo.text}?</h4>
                           <div className="progress-bar">
                             <div className="filter" style={{ width: `${this.setWidthTwo}%` }}>{this.setWidthTwo()}%</div>
                           </div>
                         </div>
+                        <p>{this.optionTwoVoted()} out of {this.totalVoted()}</p>
                       </div>
-                      :
-                      <div className="panel panel-primary">
-                        <h4>Would you rather {this.props.question.optionTwo.text}?</h4>
-                      </div>
-                    }
                   </div>
                 </div>
             }
