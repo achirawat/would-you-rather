@@ -9,22 +9,22 @@ export default function users(state = {}, action) {
         ...action.users
       };
     case SAVE_ANSWER:
-    return {
-      ...state,
-      [action.authedUser]: {
-            ...state[action.authedUser],
-            answers: {
-              ...state[action.authedUser].answers,
-                [action.qid]: action.answer
-            }
-        }
-    }
-    case ADD_QUESTION :
       return {
         ...state,
         [action.authedUser]: {
-          ...state[action.authedUser],
-          questions: state[action.authedUser].questions.concat([action.id])
+              ...state[action.authedUser],
+              answers: {
+                ...state[action.authedUser].answers,
+                  [action.qid]: action.answer
+              }
+          }
+      }
+    case ADD_QUESTION :
+      return {
+        ...state,
+        [action.question.author]: {
+          ...state[action.question.author],
+          questions: state[action.question.author].questions.concat([action.question.id])
         }		    
       }
     default:

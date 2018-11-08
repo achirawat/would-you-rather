@@ -27,13 +27,15 @@ class LeaderBoard extends Component {
 function mapStateToProps ({ users, authedUser }) {
   let score = []
   const userIDs = Object.keys(users)
+  console.log(users, userIDs)
 
-  userIDs.map((id) => (
+  userIDs.map((id) => {
     score.push({
       id: users[id].id,
       total: users[id].questions.length + (Object.keys(users[id].answers).length)
     })
-  ))
+    console.log(users[id])
+  })
 
   score.sort((b, a) => parseFloat(a.total) - parseFloat(b.total))
 
